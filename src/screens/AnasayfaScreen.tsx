@@ -11,35 +11,34 @@ import {
 import { MaterialIcons } from '@expo/vector-icons';
 import { colors, spacing, borderRadius, typography } from '../constants/colors';
 import { mockData } from '../services/mockData';
-import QuickActionButton from '../components/QuickActionButton';
 
 const { width } = Dimensions.get('window');
 
 const AnasayfaScreen = () => {
-  const renderServiceCard = (service: any) => (
-    <View key={service.id} style={styles.serviceCard}>
-      <MaterialIcons name={service.icon as any} size={24} color={colors.primary} />
+  const renderRecentComplaint = (complaint: any) => (
+    <TouchableOpacity key={complaint.id} style={styles.recentComplaintCard}>
+      <View style={styles.complaintImagePlaceholder}>
+        <MaterialIcons name="report-problem" size={24} color={colors.primary} />
+      </View>
+      <View style={styles.complaintContent}>
+        <Text style={styles.complaintTitle}>{complaint.title}</Text>
+        <Text style={styles.complaintCategory}>{complaint.category}</Text>
+      </View>
+      <View style={styles.complaintStatus}>
+        <Text style={styles.statusText}>{complaint.status}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
+  const renderServiceOption = (service: any) => (
+    <TouchableOpacity key={service.id} style={styles.serviceCard}>
+      <MaterialIcons name={service.icon as any} size={32} color={colors.primary} />
       <Text style={styles.serviceName}>{service.name}</Text>
-      <View style={styles.ratingContainer}>
+      <View style={styles.serviceRating}>
         <MaterialIcons name="star" size={16} color={colors.accent} />
         <Text style={styles.rating}>{service.rating}</Text>
       </View>
-    </View>
-  );
-
-  const renderActivityItem = (item: any) => (
-    <View key={item.id} style={styles.activityItem}>
-      <MaterialIcons 
-        name={item.type === 'complaint' ? 'report-problem' : 
-              item.type === 'photo' ? 'camera-alt' : 'check-circle'} 
-        size={20} 
-        color={colors.primary} 
-      />
-      <View style={styles.activityContent}>
-        <Text style={styles.activityTitle}>{item.title}</Text>
-        <Text style={styles.activityTime}>{item.time}</Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -48,59 +47,81 @@ const AnasayfaScreen = () => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.greeting}>Merhaba,</Text>
-            <Text style={styles.userName}>{mockData.user.name}</Text>
+            <Text style={styles.greeting}>İyi günler {mockData.user.name.split(' ')[0]} </Text>
+            <View style={styles.pointsContainer}>
+              <MaterialIcons name="star" size={16} color={colors.accent} />
+              <Text style={styles.points}>{mockData.user.points}</Text>
+              <Text style={styles.pointsLabel}>puan</Text>
+            </View>
           </View>
           <View style={styles.headerActions}>
-            <TouchableOpacity style={styles.complaintButton}>
-              <MaterialIcons name="add" size={18} color={colors.white} />
-              <Text style={styles.complaintButtonText}>Şikayet Et</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.notificationButton}>
               <MaterialIcons name="notifications" size={24} color={colors.primary} />
+              <View style={styles.notificationBadge}>
+                <Text style={styles.badgeText}>3</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.profileButton}>
+              <MaterialIcons name="account-circle" size={32} color={colors.primary} />
             </TouchableOpacity>
           </View>
         </View>
 
-        {/* Statistics Cards */}
-        <View style={styles.statsContainer}>
-          <View style={styles.statCard}>
-            <Text style={styles.statNumber}>{mockData.user.complaintsSubmitted}</Text>
-            <Text style={styles.statLabel}>Şikayet</Text>
+        {/* Main Action Card - Şikayet Et */}
+        <View style={styles.mainActionCard}>
+          <View style={styles.actionCardHeader}>
+            <Text style={styles.membershipTitle}>ŞİKAYET ÜYESİ</Text>
+            <Text style={styles.membershipDescription}>
+              Şehrinizi geliştirmek için şikayet/öneri gönderin.
+            </Text>
           </View>
-          <View style={styles.statCard}>
-            <Text style={styles.statNumber}>{mockData.user.complaintsResolved}</Text>
-            <Text style={styles.statLabel}>Çözüldü</Text>
+          
+          <View style={styles.progressSection}>
+            <Text style={styles.progressLabel}>Şikayet bakiyesi:</Text>
+            <Text style={styles.progressValue}>{mockData.user.complaintsSubmitted}/15</Text>
+            <View style={styles.progressBar}>
+              <View style={[styles.progressFill, { width: `${(mockData.user.complaintsSubmitted / 15) * 100}%` }]} />
+            </View>
           </View>
-          <View style={styles.statCard}>
-            <Text style={styles.statNumber}>{mockData.user.points}</Text>
-            <Text style={styles.statLabel}>Puan</Text>
-          </View>
+
+          <TouchableOpacity style={styles.mainActionButton}>
+            <Text style={styles.actionButtonText}>ŞİKAYET ET</Text>
+          </TouchableOpacity>
         </View>
 
-        {/* Quick Actions */}
+        {/* Quick Services */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Hızlı İşlemler</Text>
-          <View style={styles.quickActionsGrid}>
-            <QuickActionButton 
-              iconName="photo-camera" 
-              title="Fotoğraf\nÇek" 
-              onPress={() => {}} 
-            />
-            <QuickActionButton 
-              iconName="location-on" 
-              title="Haritayı\nAç" 
-              onPress={() => {}} 
-            />
-            <QuickActionButton 
-              iconName="phone" 
-              title="Acil\nArama" 
-              onPress={() => {}} 
-            />
+          <Text style={styles.sectionTitle}>Hızlı Erişim</Text>
+          <View style={styles.quickServicesGrid}>
+            <TouchableOpacity style={styles.quickServiceCard}>
+              <MaterialIcons name="photo-camera" size={24} color={colors.white} />
+              <Text style={styles.quickServiceText}>Fotoğraf</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.quickServiceCard}>
+              <MaterialIcons name="map" size={24} color={colors.white} />
+              <Text style={styles.quickServiceText}>Harita</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.quickServiceCard}>
+              <MaterialIcons name="phone" size={24} color={colors.white} />
+              <Text style={styles.quickServiceText}>Acil</Text>
+            </TouchableOpacity>
           </View>
         </View>
 
-        {/* City Services Ratings */}
+        {/* Recent Complaints */}
+        <View style={styles.section}>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Son şikayetleriniz</Text>
+            <TouchableOpacity>
+              <Text style={styles.seeAllText}>Tümü →</Text>
+            </TouchableOpacity>
+          </View>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {mockData.complaints.slice(0, 3).map(renderRecentComplaint)}
+          </ScrollView>
+        </View>
+
+        {/* City Services */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Şehir Hizmetleri</Text>
           <ScrollView 
@@ -108,16 +129,8 @@ const AnasayfaScreen = () => {
             showsHorizontalScrollIndicator={false}
             style={styles.servicesContainer}
           >
-            {mockData.cityServices.map(renderServiceCard)}
+            {mockData.cityServices.map(renderServiceOption)}
           </ScrollView>
-        </View>
-
-        {/* Recent Activity */}
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Son Aktiviteler</Text>
-          <View style={styles.activityContainer}>
-            {mockData.recentActivity.map(renderActivityItem)}
-          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -285,6 +298,190 @@ const styles = StyleSheet.create({
     fontSize: typography.sm,
     color: colors.gray,
     marginTop: spacing.xs,
+  },
+  // Yeni Starbucks tarzı stiller
+  pointsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+  },
+  points: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.primary,
+  },
+  pointsLabel: {
+    fontSize: 14,
+    color: colors.gray,
+  },
+  notificationBadge: {
+    position: 'absolute',
+    top: -4,
+    right: -4,
+    backgroundColor: '#FF3B30',
+    borderRadius: 8,
+    width: 16,
+    height: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  badgeText: {
+    color: colors.white,
+    fontSize: 10,
+    fontWeight: 'bold',
+  },
+  profileButton: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  mainActionCard: {
+    backgroundColor: colors.white,
+    margin: spacing.lg,
+    borderRadius: borderRadius.lg,
+    padding: spacing.xl,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 8,
+    elevation: 5,
+  },
+  actionCardHeader: {
+    marginBottom: spacing.lg,
+  },
+  membershipTitle: {
+    fontSize: 11,
+    fontWeight: '700',
+    color: colors.primary,
+    letterSpacing: 1,
+    marginBottom: 4,
+  },
+  membershipDescription: {
+    fontSize: 14,
+    color: colors.gray,
+    lineHeight: 20,
+  },
+  progressSection: {
+    marginBottom: spacing.xl,
+  },
+  progressLabel: {
+    fontSize: 14,
+    color: colors.darkGray,
+    marginBottom: 4,
+  },
+  progressValue: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+    marginBottom: spacing.sm,
+  },
+  progressBar: {
+    height: 8,
+    backgroundColor: colors.lightGray,
+    borderRadius: 4,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: colors.primary,
+    borderRadius: 4,
+  },
+  mainActionButton: {
+    backgroundColor: colors.primary,
+    borderRadius: 24,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  actionButtonText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+    letterSpacing: 0.5,
+  },
+  quickServicesGrid: {
+    flexDirection: 'row',
+    paddingHorizontal: spacing.lg,
+    gap: spacing.md,
+  },
+  quickServiceCard: {
+    flex: 1,
+    backgroundColor: colors.primary,
+    borderRadius: borderRadius.md,
+    padding: spacing.lg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 80,
+  },
+  quickServiceText: {
+    color: colors.white,
+    fontSize: 12,
+    fontWeight: '600',
+    marginTop: spacing.sm,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.md,
+  },
+  seeAllText: {
+    fontSize: 14,
+    color: colors.primary,
+    fontWeight: '600',
+  },
+  recentComplaintCard: {
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.md,
+    marginRight: spacing.md,
+    width: 280,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  complaintImagePlaceholder: {
+    height: 120,
+    backgroundColor: colors.lightGray,
+    borderTopLeftRadius: borderRadius.md,
+    borderTopRightRadius: borderRadius.md,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  complaintContent: {
+    padding: spacing.lg,
+  },
+  complaintTitle: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.darkGray,
+    marginBottom: spacing.xs,
+  },
+  complaintCategory: {
+    fontSize: 12,
+    color: colors.gray,
+  },
+  complaintStatus: {
+    position: 'absolute',
+    top: spacing.sm,
+    right: spacing.sm,
+    backgroundColor: colors.primary,
+    borderRadius: borderRadius.sm,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: 4,
+  },
+  statusText: {
+    fontSize: 10,
+    color: colors.white,
+    fontWeight: '600',
+  },
+  serviceRating: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
   },
 });
 
