@@ -65,7 +65,7 @@ const AnasayfaScreen = () => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.greeting}>İyi günler {mockData.user.name.split(' ')[0]} ☕</Text>
+            <Text style={styles.greeting}>İyi günler {mockData.user.name.split(' ')[0]} </Text>
             <View style={styles.pointsContainer}>
               <MaterialIcons name="star" size={16} color={colors.accent} />
               <Text style={styles.points}>{mockData.user.points}</Text>
@@ -167,12 +167,161 @@ const styles = StyleSheet.create({
     paddingHorizontal: getResponsivePadding(),
     paddingVertical: getResponsiveSize(12, 16, 20, 24),
   },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: getResponsiveSize(8, 12, 16, 20),
+  },
+  complaintButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    paddingHorizontal: getResponsiveSize(12, 16, 20, 24),
+    paddingVertical: getResponsiveSize(6, 8, 10, 12),
+    borderRadius: borderRadius.md,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  complaintButtonText: {
+    color: colors.white,
+    fontSize: getResponsiveFontSize(12),
+    fontWeight: '600',
+    marginLeft: getResponsiveSize(4, 6, 8, 10),
+  },
   greeting: {
     fontSize: getResponsiveFontSize(20),
     fontWeight: 'bold',
     color: colors.darkGray,
     marginBottom: 4,
   },
+  userName: {
+    fontSize: getResponsiveFontSize(24),
+    fontWeight: 'bold',
+    color: colors.primary,
+  },
+  notificationButton: {
+    padding: spacing.sm,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.full,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: spacing.lg,
+    marginBottom: spacing.lg,
+    gap: spacing.md,
+  },
+  statCard: {
+    flex: 1,
+    backgroundColor: colors.white,
+    padding: spacing.lg,
+    borderRadius: borderRadius.md,
+    alignItems: 'center',
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  statNumber: {
+    fontSize: typography.lg,
+    fontWeight: 'bold',
+    color: colors.primary,
+  },
+  statLabel: {
+    fontSize: typography.sm,
+    color: colors.gray,
+    marginTop: spacing.xs,
+  },
+  section: {
+    marginBottom: getResponsiveSize(20, 24, 28, 32),
+  },
+  sectionTitle: {
+    fontSize: getResponsiveFontSize(18),
+    fontWeight: 'bold',
+    color: colors.primary,
+    paddingHorizontal: getResponsivePadding(),
+    marginBottom: getResponsiveSize(12, 16, 20, 24),
+  },
+  quickActionsGrid: {
+    flexDirection: 'row',
+    paddingHorizontal: getResponsivePadding(),
+    gap: getResponsiveSize(8, 12, 16, 20),
+  },
+  servicesContainer: {
+    paddingLeft: getResponsivePadding(),
+  },
+  serviceCard: {
+    backgroundColor: colors.white,
+    padding: getResponsiveSize(12, 16, 20, 24),
+    borderRadius: getResponsiveSize(12, 16, 20, 24),
+    marginRight: getResponsiveSize(12, 16, 20, 24),
+    width: getServiceCardWidth(),
+    minWidth: isTablet ? 150 : 120,
+    alignItems: 'center',
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  serviceName: {
+    fontSize: getResponsiveFontSize(12),
+    fontWeight: '600',
+    color: colors.darkGray,
+    textAlign: 'center',
+    marginVertical: getResponsiveSize(8, 10, 12, 16),
+    lineHeight: getResponsiveFontSize(16),
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  rating: {
+    fontSize: getResponsiveFontSize(12),
+    fontWeight: 'bold',
+    color: colors.darkGray,
+    marginLeft: 4,
+  },
+  activityContainer: {
+    backgroundColor: colors.white,
+    marginHorizontal: spacing.lg,
+    borderRadius: borderRadius.md,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  activityItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: spacing.lg,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGray,
+  },
+  activityContent: {
+    flex: 1,
+    marginLeft: spacing.md,
+  },
+  activityTitle: {
+    fontSize: typography.base,
+    fontWeight: '600',
+    color: colors.darkGray,
+  },
+  activityTime: {
+    fontSize: typography.sm,
+    color: colors.gray,
+    marginTop: spacing.xs,
+  },
+  // Yeni Starbucks tarzı stiller
   pointsContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -186,15 +335,6 @@ const styles = StyleSheet.create({
   pointsLabel: {
     fontSize: getResponsiveFontSize(12),
     color: colors.gray,
-  },
-  headerActions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: getResponsiveSize(8, 12, 16, 20),
-  },
-  notificationButton: {
-    position: 'relative',
-    padding: getResponsiveSize(4, 6, 8, 10),
   },
   notificationBadge: {
     position: 'absolute',
@@ -243,23 +383,23 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   membershipDescription: {
-    fontSize: getResponsiveFontSize(14),
+    fontSize: 14,
     color: colors.gray,
-    lineHeight: getResponsiveSize(18, 20, 22, 24),
+    lineHeight: 20,
   },
   progressSection: {
-    marginBottom: getResponsiveSize(16, 20, 24, 28),
+    marginBottom: spacing.xl,
   },
   progressLabel: {
-    fontSize: getResponsiveFontSize(14),
+    fontSize: 14,
     color: colors.darkGray,
     marginBottom: 4,
   },
   progressValue: {
-    fontSize: getResponsiveFontSize(20),
+    fontSize: 20,
     fontWeight: 'bold',
     color: colors.primary,
-    marginBottom: getResponsiveSize(6, 8, 10, 12),
+    marginBottom: spacing.sm,
   },
   progressBar: {
     height: getResponsiveSize(6, 8, 10, 12),
@@ -284,16 +424,6 @@ const styles = StyleSheet.create({
     fontSize: getResponsiveFontSize(16),
     fontWeight: 'bold',
     letterSpacing: 0.5,
-  },
-  section: {
-    marginBottom: getResponsiveSize(20, 24, 28, 32),
-  },
-  sectionTitle: {
-    fontSize: getResponsiveFontSize(18),
-    fontWeight: 'bold',
-    color: colors.primary,
-    paddingHorizontal: getResponsivePadding(),
-    marginBottom: getResponsiveSize(12, 16, 20, 24),
   },
   quickServicesGrid: {
     flexDirection: isTablet ? 'row' : 'row',
@@ -328,6 +458,13 @@ const styles = StyleSheet.create({
   },
   seeAllText: {
     fontSize: getResponsiveFontSize(14),
+    color: colors.primary,
+    fontWeight: '600',
+  },
+    marginBottom: spacing.md,
+  },
+  seeAllText: {
+    fontSize: 14,
     color: colors.primary,
     fontWeight: '600',
   },
@@ -378,41 +515,10 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontWeight: '600',
   },
-  servicesContainer: {
-    paddingLeft: getResponsivePadding(),
-  },
-  serviceCard: {
-    backgroundColor: colors.white,
-    padding: getResponsiveSize(12, 16, 20, 24),
-    borderRadius: getResponsiveSize(12, 16, 20, 24),
-    marginRight: getResponsiveSize(12, 16, 20, 24),
-    width: getServiceCardWidth(),
-    minWidth: isTablet ? 150 : 120,
-    alignItems: 'center',
-    shadowColor: colors.shadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  serviceName: {
-    fontSize: getResponsiveFontSize(12),
-    fontWeight: '600',
-    color: colors.darkGray,
-    textAlign: 'center',
-    marginVertical: getResponsiveSize(8, 10, 12, 16),
-    lineHeight: getResponsiveFontSize(16),
-  },
   serviceRating: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 4,
-  },
-  rating: {
-    fontSize: getResponsiveFontSize(12),
-    fontWeight: 'bold',
-    color: colors.darkGray,
-    marginLeft: 4,
   },
 });
 
