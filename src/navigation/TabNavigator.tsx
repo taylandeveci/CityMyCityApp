@@ -1,10 +1,22 @@
-import { Tabs } from 'expo-router';
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialIcons } from '@expo/vector-icons';
-import { colors } from '../src/constants/colors';
+import { colors } from '../constants/colors';
 
-export default function RootLayout() {
+// Import screens
+import {
+  AnasayfaScreen,
+  HaritaScreen,
+  SelfieScreen,
+  KurumlarScreen,
+  ProfilScreen,
+} from '../screens';
+
+const Tab = createBottomTabNavigator();
+
+const TabNavigator = () => {
   return (
-    <Tabs
+    <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.gray,
@@ -28,51 +40,53 @@ export default function RootLayout() {
         headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="index"
+      <Tab.Screen
+        name="Anasayfa"
+        component={AnasayfaScreen}
         options={{
-          title: 'Anasayfa',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="home" size={size} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
-        name="harita"
+      <Tab.Screen
+        name="Harita"
+        component={HaritaScreen}
         options={{
-          title: 'Harita',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="map" size={size} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
-        name="selfie"
+      <Tab.Screen
+        name="Selfie"
+        component={SelfieScreen}
         options={{
-          title: 'Selfie',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="camera-alt" size={size} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
-        name="kurumlar"
+      <Tab.Screen
+        name="Kurumlar"
+        component={KurumlarScreen}
         options={{
-          title: 'Kurumlar',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="business" size={size} color={color} />
           ),
         }}
       />
-      <Tabs.Screen
-        name="profil"
+      <Tab.Screen
+        name="Profil"
+        component={ProfilScreen}
         options={{
-          title: 'Profil',
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="person" size={size} color={color} />
           ),
         }}
       />
-    </Tabs>
+    </Tab.Navigator>
   );
-}
+};
+
+export default TabNavigator;
