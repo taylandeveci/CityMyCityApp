@@ -65,7 +65,7 @@ const AnasayfaScreen = () => {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.greeting}>İyi günler {mockData.user.name.split(' ')[0]} ☕</Text>
+            <Text style={styles.greeting}>İyi günler {mockData.user.name.split(' ')[0]}</Text>
             <View style={styles.pointsContainer}>
               <MaterialIcons name="star" size={16} color={colors.accent} />
               <Text style={styles.points}>{mockData.user.points}</Text>
@@ -92,14 +92,6 @@ const AnasayfaScreen = () => {
             <Text style={styles.membershipDescription}>
               Şehrinizi geliştirmek için şikayet/öneri gönderin.
             </Text>
-          </View>
-          
-          <View style={styles.progressSection}>
-            <Text style={styles.progressLabel}>Şikayet bakiyesi:</Text>
-            <Text style={styles.progressValue}>{mockData.user.complaintsSubmitted}/15</Text>
-            <View style={styles.progressBar}>
-              <View style={[styles.progressFill, { width: `${(mockData.user.complaintsSubmitted / 15) * 100}%` }]} />
-            </View>
           </View>
 
           <TouchableOpacity style={styles.mainActionButton}>
@@ -246,31 +238,6 @@ const styles = StyleSheet.create({
     fontSize: getResponsiveFontSize(14),
     color: colors.gray,
     lineHeight: getResponsiveSize(18, 20, 22, 24),
-  },
-  progressSection: {
-    marginBottom: getResponsiveSize(16, 20, 24, 28),
-  },
-  progressLabel: {
-    fontSize: getResponsiveFontSize(14),
-    color: colors.darkGray,
-    marginBottom: 4,
-  },
-  progressValue: {
-    fontSize: getResponsiveFontSize(20),
-    fontWeight: 'bold',
-    color: colors.primary,
-    marginBottom: getResponsiveSize(6, 8, 10, 12),
-  },
-  progressBar: {
-    height: getResponsiveSize(6, 8, 10, 12),
-    backgroundColor: colors.lightGray,
-    borderRadius: 4,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: colors.primary,
-    borderRadius: 4,
   },
   mainActionButton: {
     backgroundColor: colors.primary,
