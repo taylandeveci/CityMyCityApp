@@ -51,21 +51,15 @@ const AnasayfaScreen = () => {
             <Text style={styles.greeting}>Merhaba,</Text>
             <Text style={styles.userName}>{mockData.user.name}</Text>
           </View>
-          <TouchableOpacity style={styles.notificationButton}>
-            <MaterialIcons name="notifications" size={24} color={colors.primary} />
-          </TouchableOpacity>
-        </View>
-
-        {/* Weather Widget */}
-        <View style={styles.weatherCard}>
-          <View style={styles.weatherHeader}>
-            <MaterialIcons name="wb-sunny" size={32} color={colors.accent} />
-            <View>
-              <Text style={styles.temperature}>{mockData.weather.temperature}°C</Text>
-              <Text style={styles.weatherCondition}>{mockData.weather.condition}</Text>
-            </View>
+          <View style={styles.headerActions}>
+            <TouchableOpacity style={styles.complaintButton}>
+              <MaterialIcons name="add" size={18} color={colors.white} />
+              <Text style={styles.complaintButtonText}>Şikayet Et</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.notificationButton}>
+              <MaterialIcons name="notifications" size={24} color={colors.primary} />
+            </TouchableOpacity>
           </View>
-          <Text style={styles.location}>{mockData.user.district}, {mockData.user.city}</Text>
         </View>
 
         {/* Statistics Cards */}
@@ -88,11 +82,6 @@ const AnasayfaScreen = () => {
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Hızlı İşlemler</Text>
           <View style={styles.quickActionsGrid}>
-            <QuickActionButton 
-              iconName="add-circle" 
-              title="Şikayet\nEkle" 
-              onPress={() => {}} 
-            />
             <QuickActionButton 
               iconName="photo-camera" 
               title="Fotoğraf\nÇek" 
@@ -147,6 +136,30 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
   },
+  headerActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.md,
+  },
+  complaintButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    borderRadius: borderRadius.md,
+    shadowColor: colors.shadow,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  complaintButtonText: {
+    color: colors.white,
+    fontSize: typography.sm,
+    fontWeight: '600',
+    marginLeft: spacing.xs,
+  },
   greeting: {
     fontSize: typography.base,
     color: colors.gray,
@@ -165,38 +178,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
-  },
-  weatherCard: {
-    backgroundColor: colors.white,
-    marginHorizontal: spacing.lg,
-    marginBottom: spacing.lg,
-    padding: spacing.lg,
-    borderRadius: borderRadius.lg,
-    shadowColor: colors.shadow,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  weatherHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: spacing.sm,
-  },
-  temperature: {
-    fontSize: typography.xl,
-    fontWeight: 'bold',
-    color: colors.primary,
-    marginLeft: spacing.md,
-  },
-  weatherCondition: {
-    fontSize: typography.sm,
-    color: colors.gray,
-    marginLeft: spacing.md,
-  },
-  location: {
-    fontSize: typography.sm,
-    color: colors.gray,
   },
   statsContainer: {
     flexDirection: 'row',
