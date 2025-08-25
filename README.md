@@ -1,182 +1,123 @@
-# 🌟 CityMyCity - Modern Şehir Yönetimi Uygulaması
+# CityMyCityApp 🏙️
 
-<div align="center">
-  <img src="https://img.shields.io/badge/React%20Native-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React Native" />
-  <img src="https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Expo" />
-  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-</div>
+A modern city management and citizen engagement mobile application built with React Native and Expo.
 
----
+## 🚀 Features
 
-**CityMyCity**, modern şehir yönetimi ve vatandaş katılımı için geliştirilmiş bir mobil uygulamadır. Starbucks'tan ilham alınan premium tasarım sistemi ile React Native ve Expo kullanılarak oluşturulmuştur.
+- **Home Dashboard** - Quick actions, city statistics, and activity feed
+- **Interactive Map** - View and report city issues with location-based markers
+- **Photo Gallery** - Share and view community photos (Selfie screen)
+- **City Services** - Browse and rate municipal departments and services
+- **User Profile** - Manage personal settings and view activity history
 
-## 📱 Özellikler
+## 🛠️ Tech Stack
 
-### 🏠 **Anasayfa**
-- 📊 Şehir hizmetleri değerlendirme carousel'i
-- ⚡ Hızlı işlem butonları
-- 📈 Aktivite beslemesi ve istatistikler
-- 🌤️ Hava durumu widget'ı
+- **React Native** 0.79.5
+- **Expo SDK** 53.0.22  
+- **Expo Router** 5.1.5 (File-based routing)
+- **TypeScript** 5.8.3
+- **MaterialIcons** for UI icons
 
-### 🗺️ **Harita & Şikayetler**
-- 🗺️ İnteraktif harita görünümü
-- 📝 Şikayet listesi ve filtreleme
-- 🏷️ Kategori bazlı arama
-- ➕ Floating action button ile hızlı şikayet
+## 📁 Project Structure
 
-### 📸 **Selfie Galerisi**
-- 📷 Instagram-tarzı fotoğraf galerisi
-- 🎬 Video desteği
-- ❤️ Beğeni ve yorum sistemi
-- 🔍 Filtre seçenekleri
-
-### 🏢 **Kurumlar**
-- 🏛️ Belediye ve kurum kartları
-- ⭐ Değerlendirme sistemi
-- 📞 Doğrudan iletişim butonları
-- 📊 Performans metrikleri
-
-### 👤 **Profil**
-- 🏆 Başarı rozet sistemi
-- 📈 Kullanıcı istatistikleri
-- ⚙️ Ayarlar paneli
-- 📱 Kişiselleştirme seçenekleri
-
-## 🎨 Tasarım Sistemi
-
-### 🎯 **Renk Paleti**
-```javascript
-const colors = {
-  primary: '#00704A',      // Starbucks yeşili
-  secondary: '#00A862',    // Açık yeşil
-  accent: '#D4AF37',       // Altın
-  background: '#F8F9FA',   // Ana arkaplan
-  white: '#FFFFFF',        // Beyaz
-  gray: '#6C757D',         // Gri ton
-  success: '#28A745',      // Başarı yeşili
-  warning: '#FFC107',      // Uyarı sarısı
-  error: '#DC3545'         // Hata kırmızısı
-};
+```
+CityMyCityApp/
+├── app/                    # Screen files (Expo Router)
+│   ├── _layout.tsx        # Tab navigation layout
+│   ├── index.tsx          # Home screen
+│   ├── harita.tsx         # Map screen
+│   ├── selfie.tsx         # Photo gallery
+│   ├── kurumlar.tsx       # City services
+│   └── profil.tsx         # Profile screen
+├── src/
+│   ├── components/        # Reusable components
+│   ├── constants/         # Colors, typography, spacing
+│   ├── screens/           # Screen components
+│   ├── services/          # Mock data and services
+│   └── utils/             # Helper functions
+└── assets/               # Images and fonts
 ```
 
-### ✨ **Tasarım Prensipleri**
-- **8px Grid Sistemi**: Tutarlı spacing
-- **Card-Based Layout**: Modern kart tasarımları
-- **Smooth Shadows**: Premium görünüm
-- **Typography Scale**: 12px - 32px arası ölçekli yazı tipleri
-- **Border Radius**: 8px, 12px, 16px standartları
+## 🎨 Design System
 
-## 🚀 Kurulum ve Çalıştırma
+The app uses a Starbucks-inspired color palette with custom styling:
 
-### 📋 **Ön Gereksinimler**
-- Node.js (v18 veya üzeri)
-- npm veya yarn
+```typescript
+// src/constants/colors.ts
+export const colors = {
+  primary: '#00704A',      // Starbucks green
+  secondary: '#00A862',    // Light green
+  accent: '#D4AF37',       // Gold
+  background: '#F8F9FA'    // Light background
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
 - Expo CLI
-- Expo Go (mobil test için)
+- Expo Go app (for mobile testing)
 
-### 🛠️ **Kurulum Adımları**
+### Installation
 
-1. **Repository'yi klonlayın:**
+1. **Clone the repository:**
    ```bash
-   git clone https://github.com/[USERNAME]/CityMyCity.git
-   cd CityMyCity
+   git clone https://github.com/taylandeveci/CityMyCityApp.git
+   cd CityMyCityApp
    ```
 
-2. **Bağımlılıkları yükleyin:**
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. **Uygulamayı başlatın:**
+3. **Start the development server:**
    ```bash
    npx expo start
    ```
 
-4. **Test edin:**
-   - **📱 Mobil**: QR kodu Expo Go ile tarayın
-   - **💻 Web**: `w` tuşuna basın
-   - **📲 iOS Simulator**: `i` tuşuna basın
-   - **🤖 Android Emulator**: `a` tuşuna basın
+4. **Test the app:**
+   - **Mobile**: Scan QR code with Expo Go
+   - **Web**: Press `w` in terminal
+   - **iOS Simulator**: Press `i` in terminal
+   - **Android Emulator**: Press `a` in terminal
 
-## 📁 Proje Yapısı
+## 📚 Documentation
 
-```
-src/
-├── 🧩 components/          # Yeniden kullanılabilir bileşenler
-│   └── QuickActionButton.tsx
-├── 📱 screens/             # Ana ekran bileşenleri
-│   ├── AnasayfaScreen.tsx
-│   ├── HaritaScreen.tsx
-│   ├── SelfieScreen.tsx
-│   ├── KurumlarScreen.tsx
-│   └── ProfilScreen.tsx
-├── 🧭 navigation/          # Navigasyon yapılandırması
-│   └── TabNavigator.tsx
-├── 🎨 constants/           # Tasarım sistemi sabitleri
-│   └── colors.ts
-├── 📊 services/            # Veri servisleri ve mock data
-│   └── mockData.ts
-└── 🛠️ utils/               # Yardımcı fonksiyonlar
-```
+- **[CUSTOMIZATION_GUIDE_TR.md](./CUSTOMIZATION_GUIDE_TR.md)** - Complete Turkish customization guide with 18 detailed sections
+- **[Customize.txt](./Customize.txt)** - Project overview for non-technical users
 
-## 🛠️ Teknoloji Stack'i
+## 🎯 Key Features
 
-- **⚛️ React Native**: Cross-platform mobil geliştirme
-- **📱 Expo**: Geliştirme ve deployment platformu
-- **🔷 TypeScript**: Tip güvenliği ve better DX
-- **🧭 Expo Router**: Modern file-based routing
-- **🎨 @expo/vector-icons**: Zengin ikon kütüphanesi
-- **📐 StyleSheet**: Performanslı stil yönetimi
+- **File-based Routing** with Expo Router
+- **TypeScript** for type safety
+- **Custom Design System** with consistent styling
+- **Mock Data Service** for development
+- **Responsive Design** with device-specific adaptations
+- **Material Icons** for consistent UI
 
-## 🎯 Roadmap
+## 🔧 Customization
 
-### 🔮 **v1.1 - Entegrasyonlar**
-- [ ] 🗺️ React Native Maps entegrasyonu
-- [ ] 📷 Expo Camera entegrasyonu
-- [ ] 🔔 Push notification sistemi
-- [ ] 💾 Offline data storage
+The app is highly customizable. You can easily modify:
+- **Colors**: Edit `src/constants/colors.ts`
+- **Typography**: Adjust font sizes and spacing
+- **Navigation**: Modify tab layout in `app/_layout.tsx`
+- **Data**: Update mock data in `src/services/mockData.ts`
+- **Screens**: Add or modify screens in `src/screens/`
 
-### 🚀 **v1.2 - Animasyonlar**
-- [ ] 🎬 React Native Reanimated
-- [ ] ✨ Micro-interactions
-- [ ] 🌙 Dark mode desteği
-- [ ] 🔄 Pull-to-refresh
+## 📄 License
 
-### 🌍 **v1.3 - Backend & API**
-- [ ] 🔐 Authentication sistemi
-- [ ] 🌐 REST API entegrasyonu
-- [ ] ⚡ Real-time güncellemeler
-- [ ] 🤖 AI-powered özellikler
+This project is open source and available under the MIT License.
 
-## 📸 Ekran Görüntüleri
+## 🤝 Contributing
 
-*Yakında eklenecek...*
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 🤝 Katkıda Bulunma
-
-1. **🍴 Fork** yapın
-2. **🌿 Feature branch** oluşturun:
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
-3. **💾 Commit** yapın:
-   ```bash
-   git commit -m "✨ Add amazing feature"
-   ```
-4. **📤 Push** edin:
-   ```bash
-   git push origin feature/amazing-feature
-   ```
-5. **🔄 Pull Request** açın
-
-## 📄 Lisans
-
-Bu proje **MIT** lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
-
-## 👥 Ekip
-
-- **Developer**: [@taylandeveci](https://github.com/taylandeveci)
-- **Design**: Starbucks-inspired
 
 ## 📞 İletişim
 
